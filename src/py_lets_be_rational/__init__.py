@@ -1,0 +1,3 @@
+from importlib import import_module
+import_module('py_lets_be_rational._lets_be_rational_core')
+del import_module
