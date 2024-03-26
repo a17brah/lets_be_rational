@@ -13,7 +13,7 @@ from setuptools import find_packages
 
 from pathlib import Path
 this_directory = Path(__file__).parent
-readme = (this_directory / "README.md").read_text()
+readme = (this_directory / "ReadMe.md").read_text()
 
 setup(
     name="py_lets_be_rational",
