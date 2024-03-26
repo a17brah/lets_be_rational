@@ -1,8 +1,6 @@
 #include "export.h"
-#include <iostream>
 
 namespace nb = nanobind;
-constexpr double DOUBLE_MAX = 1.7976931348623157e+308;
 
 //check corner cases
 void impliedVolatility(
@@ -14,17 +12,13 @@ void impliedVolatility(
         const nb::ndarray<double, nb::shape<nb::any>> &q /* q=±1 */) {
     //check same size;
     size_t n = price.size();
-    if (n != K.size() || n != q.size() || n != output.size() || n != T.size() || n != F.size())
-    {
+    if (n != K.size() || n != q.size() || n != output.size() || n != T.size() || n != F.size()) {
         throw std::runtime_error("Error: All input arrays must have the same size.");
     }
 
-    #pragma omp parallel for
+#pragma omp parallel for
     for (int64_t i = 0; i < n; ++i) {
         double res = implied_volatility_from_a_transformed_rational_guess(price(i), F(i), K(i), T(i), q(i));
-        if (std::fabs(res) == DOUBLE_MAX) {
-            res = 0;
-        }
         output(i) = res;
     }
 };
