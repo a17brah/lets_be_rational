@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.18...3.26)
 
-project(py_lets_be_rational LANGUAGES CXX)
+project(lets_be_rational LANGUAGES CXX)
 
 if (NOT SKBUILD)
     message(WARNING "This CMake file should be executed via scikit-build. "
             "Please run\n$ pip install .")
-endif()
+endif ()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -23,13 +23,13 @@ elseif (MSVC)
     # MSVC needs a little extra help finding the Python library
     find_package(PythonInterp)
     find_package(Python)
-endif()
+endif ()
 
 if (UNIX AND NOT APPLE)
     find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
-else()
+else ()
     find_package(Python COMPONENTS Interpreter Development REQUIRED)
-endif()
+endif ()
 
 # Import nanobind through CMake's find_package mechanism
 # Run `nanobind.cmake_dir()` from Python to detect install location
@@ -43,7 +43,7 @@ find_package(nanobind CONFIG REQUIRED)
 include_directories("${NB_DIR}/include")
 include_directories("${_Python_INCLUDE_DIR}")
 
-nanobind_add_module(_lets_be_rational_core NB_STATIC
+nanobind_add_module(lets_be_rational_core NB_STATIC
         src/export.cpp
         src/src/erf_cody.cpp
         src/src/lets_be_rational.cpp
@@ -51,15 +51,12 @@ nanobind_add_module(_lets_be_rational_core NB_STATIC
         src/src/rational_cubic.cpp)
 
 target_include_directories(
-        _lets_be_rational_core
+        lets_be_rational_core
         PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/src/include>
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
-find_package(OpenMP)
-target_link_libraries(_lets_be_rational_core PUBLIC OpenMP::OpenMP_CXX)
+set_property(TARGET lets_be_rational_core PROPERTY POSITION_INDEPENDENT_CODE ON)
 
-set_property(TARGET _lets_be_rational_core PROPERTY POSITION_INDEPENDENT_CODE ON)
+target_compile_definitions(lets_be_rational_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
 
-target_compile_definitions(_lets_be_rational_core PRIVATE VERSION_INFO=${PROJECT_VERSION})
-
-install(TARGETS _lets_be_rational_core LIBRARY DESTINATION .)
+install(TARGETS lets_be_rational_core LIBRARY DESTINATION lets_be_rational)

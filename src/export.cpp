@@ -16,17 +16,14 @@ void impliedVolatility(
         throw std::runtime_error("Error: All input arrays must have the same size.");
     }
 
-#pragma omp parallel for
-    for (int64_t i = 0; i < n; ++i) {
+    for (std::size_t i = 0; i < n; ++i) {
         double res = implied_volatility_from_a_transformed_rational_guess(price(i), F(i), K(i), T(i), q(i));
         output(i) = res;
     }
 };
 
-NB_MODULE(_lets_be_rational_core, m_) {
-    nb::module_ m = nb::module_::import_("py_lets_be_rational");
-
-    m.def("implied_volatility", &impliedVolatility,
+NB_MODULE(lets_be_rational_core, m) {
+    m.def("implied_volatility_core", &impliedVolatility,
           R"pbdoc(
               Calculate implied volatility.
 

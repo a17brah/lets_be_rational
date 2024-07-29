@@ -4,3 +4,6 @@
 /dist/
 /src/py_lets_be_rational.egg-info/
 /.idea
+/build/
+/src/lets_be_rational.egg-info/
+*/.pytest_cache/

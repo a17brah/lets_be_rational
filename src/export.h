@@ -2,7 +2,6 @@
 #define PY_LETS_BE_RATIONAL_EXPORT_H
 
 #include "lets_be_rational.h"
-#include <omp.h>
 #include <nanobind/nanobind.h>
 #include <nanobind/stl/vector.h>
 #include <nanobind/nanobind.h>
