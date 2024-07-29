@@ -4,12 +4,12 @@ namespace nb = nanobind;
 
 //check corner cases
 void impliedVolatility(
-        nb::ndarray<double, nb::shape<nb::any>> output,
-        const nb::ndarray<double, nb::shape<nb::any>> &price,
-        const nb::ndarray<double, nb::shape<nb::any>> &F,
-        const nb::ndarray<double, nb::shape<nb::any>> &K,
-        const nb::ndarray<double, nb::shape<nb::any>> &T,
-        const nb::ndarray<double, nb::shape<nb::any>> &q /* q=±1 */) {
+        nb::ndarray<double, nb::shape<-1>> output,
+        const nb::ndarray<double, nb::shape<-1>> &price,
+        const nb::ndarray<double, nb::shape<-1>> &F,
+        const nb::ndarray<double, nb::shape<-1>> &K,
+        const nb::ndarray<double, nb::shape<-1>> &T,
+        const nb::ndarray<double, nb::shape<-1>> &q /* q=±1 */) {
     //check same size;
     size_t n = price.size();
     if (n != K.size() || n != q.size() || n != output.size() || n != T.size() || n != F.size()) {

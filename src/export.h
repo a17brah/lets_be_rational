@@ -10,11 +10,11 @@
 namespace nb = nanobind;
 
 void impliedVolatility(
-        nb::ndarray<double, nb::shape<nb::any>> output,
-        const nb::ndarray<double, nb::shape<nb::any>> &price,
-        const nb::ndarray<double, nb::shape<nb::any>> &F,
-        const nb::ndarray<double, nb::shape<nb::any>> &K,
-        const nb::ndarray<double, nb::shape<nb::any>> &T,
-        const nb::ndarray<double, nb::shape<nb::any>> &q /* q=±1 */);
+        nb::ndarray<double, nb::shape<-1>> output,
+        const nb::ndarray<double, nb::shape<-1>> &price,
+        const nb::ndarray<double, nb::shape<-1>> &F,
+        const nb::ndarray<double, nb::shape<-1>> &K,
+        const nb::ndarray<double, nb::shape<-1>> &T,
+        const nb::ndarray<double, nb::shape<-1>> &q /* q=±1 */);
 
 #endif //PY_LETS_BE_RATIONAL_EXPORT_H
