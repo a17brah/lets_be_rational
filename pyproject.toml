@@ -5,6 +5,7 @@ requires = [
     "scikit-build==0.18.0",
     "cmake>=3.18",
     "nanobind>=2.0.0",
+    "numpy>=1.26.0",
     "ninja; platform_system!='Windows'"
 ]
 
