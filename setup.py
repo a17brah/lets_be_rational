@@ -9,7 +9,6 @@ except ImportError:
           "first install the build dependencies listed in pyproject.toml!",
           file=sys.stderr)
     raise
-
 from setuptools import find_packages
 
 # read the contents of your README file (https://packaging.python.org/en/latest/guides/making-a-pypi-friendly-readme/)
@@ -26,9 +25,10 @@ setup(
     license="BSD",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
-    cmake_install_dir="src/lets_be_rational",
+    cmake_install_dir="src",
     include_package_data=True,
     python_requires=">=3.10",
     long_description=readme,
+    install_requires=["numpy >= 1.26.0"],
     long_description_content_type="text/markdown"
 )
