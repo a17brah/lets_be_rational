@@ -1,4 +1,6 @@
-#include "export.h"
+#include "lets_be_rational.h"
+#include <nanobind/nanobind.h>
+#include <nanobind/ndarray.h>
 
 namespace nb = nanobind;
 

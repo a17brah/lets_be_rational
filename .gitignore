@@ -7,3 +7,5 @@
 /build/
 /src/lets_be_rational.egg-info/
 */.pytest_cache/
+/lets_be_rational.egg-info/
+/.pytest_cache/
